@@ -12,10 +12,10 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v4 # Checkout the code from the repository
 
             - name: Setup SSH key
-            - run: |
+              run: |
                 echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
                 chmod 600 ~/ssh_key
 
