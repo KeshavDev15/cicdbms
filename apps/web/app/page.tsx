@@ -12,6 +12,7 @@ export default async function Home() {
       <h1>Hello {user?.username}</h1>
       Password:
       <h1>Hello {user?.password}</h1>
+      Hello developed a ci/cd pipeline for bms
     </div>
   );
 }
