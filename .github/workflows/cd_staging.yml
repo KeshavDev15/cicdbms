@@ -1,0 +1,30 @@
+name : Deploy to staging
+on:
+    push:
+        branches:
+            - "main"
+
+jobs:
+    redeploy_everything:
+        name: Deploying everything to staging cluster
+        runs-on: ubuntu-latest
+
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup SSH key
+            - run: |
+                echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
+                chmod 600 ~/ssh_key
+                
+            - name: Deploy to staging
+              run: |
+                ssh -i ~/ssh_key ubuntu@13.235.71.113
+                cd cicdbms/ && git pull
+                pnpm install
+                pnpm run build
+                pm2 restart http-server
+                pm2 restart ws-server
+                pm2 restart web
