@@ -13,6 +13,7 @@ export default async function Home() {
       Password:
       <h1>Hello {user?.password}</h1>
       Hello developed a ci/cd pipeline for bms
+      again ran the pipeline
     </div>
   );
 }
