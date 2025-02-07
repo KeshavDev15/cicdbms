@@ -6,8 +6,8 @@ on:
 
 jobs:
     redeploy_everything:
-        name: Deploying everything to staging cluster
         runs-on: ubuntu-latest
+        name: Deploying everything to staging cluster
 
 
         steps:
@@ -18,7 +18,7 @@ jobs:
             - run: |
                 echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
                 chmod 600 ~/ssh_key
-                
+
             - name: Deploy to staging
               run: |
                 ssh -i ~/ssh_key ubuntu@13.235.71.113
