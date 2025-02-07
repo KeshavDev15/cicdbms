@@ -20,10 +20,11 @@ jobs:
 
             - name: Deploy to staging
               run: |
-                ssh -i ~/ssh_key ubuntu@13.235.71.113
+                ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.235.71.113 << 'EOF'
                 cd cicdbms/ && git pull
                 pnpm install
                 pnpm run build
                 pm2 restart http-server
                 pm2 restart ws-server
                 pm2 restart web
+                EOF
